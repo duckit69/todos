@@ -1,4 +1,4 @@
-import { Body } from "../Html_elements/body";
+import { Main } from "../Html_elements/main";
 
 class Home {
     constructor() {
@@ -6,7 +6,7 @@ class Home {
     }
 
     clear() {
-        Body.clear();
+        Main.clear();
     }
 
 }

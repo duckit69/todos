@@ -15,7 +15,7 @@ module.exports = {
   })],
   devtool: 'eval-source-map',
   devServer: {
-    watchFiles: ["./src/index.html"],
+    watchFiles: ["./src/index.html", "./src/style.css"],
   },
   module: {
     rules: [

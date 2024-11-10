@@ -1,28 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="reset.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./reset.css" />
+    <link rel="stylesheet" href="./style.css" />
     <title>Document</title>
-</head>
-<body>
+  </head>
+  <body>
     <main>
-        <div class="head">
-            <h1>My Projects</h1>
-            <button>Add Project</button>
-            <button>Remove Proejct</button>
-        </div>
-        <div class="projects">
-            <div class="project">
-                <div class="task">
-                    <h2 class="task-title">Title</h2>
-                    <p class="task-desc">My Description goes here and it can be anything related to the task itself</p>
-                    <p class="task-date">2033-09-23</p>
-                    <div class="remove-task">close</div>
-                </div>
+      <div class="head">
+        <h1>My Projects</h1>
+        <button class="add-project add">Add Project</button>
+        <button class="remove">Remove Proejct</button>
+      </div>
+      <div class="projects">
+        <div class="project">
+          <h2 class="project-title">Super duuper</h2>
+          <div class="tasks">
+            <div class="task">
+              <h3 class="task-title">Title</h3>
+              <p class="task-desc">
+                My Description goes here and it can be anything related to the
+                task itself
+              </p>
+              <p class="task-date">2033-09-23</p>
             </div>
+          </div>
+          <div class="task-manager">
+            <button class="add">Add Task</button>
+            <button class="remove">Remove Task</button>
+          </div>
         </div>
+        <div class="project">
+          <h2 class="project-title">Super duuper</h2>
+          <div class="tasks">
+            <div class="task">
+              <h3 class="task-title">Title</h3>
+              <p class="task-desc">
+                My Description goes here and it can be anything related to the
+                task itself something
+              </p>
+              <p class="task-date">2033-09-23</p>
+              <div class="remove-task">close</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
-</body>
+  </body>
 </html>
