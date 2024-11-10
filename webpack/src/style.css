@@ -4,6 +4,7 @@
     --content: #71717a;
     --add: #7dd3fc;
     --remove: #f87171;
+    --green: #14b8a6;
 }
 .bg-grey {
     background-color: var(--grey);
@@ -59,36 +60,65 @@ main {
 }
 
 .project {
+    height: 500px;
     background-color: var(--grey);
     padding: 10px;
-
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
 
 .tasks {
-
+    overflow-y: auto;
+    background-color: var(--white);
+    padding: 10px;
 }
 
 .task {
-    background-color: var(--white);
+    background-color: var(--grey);
+    margin: 20px 0;
+    padding: 10px 5px;
 }
 
-.task-manager {
-    margin-top: auto;
-}
 button {
     color: var(--white);
     border-radius: 5px;
     font-weight: bold;
 }
-.add {
+.btn-add {
     background-color: var(--add);
 }
 
-.remove {
+.btn-remove {
     background-color: var(--remove);
+}
+
+.btn-edit {
+    background-color: var(--green);
 }
 
 .add-project {
     margin-left: auto;
 }
 
+.bg-high-priority {
+
+}
+
+.bg-normal-priority {
+
+}
+
+.display-none {
+    display: none;
+}
+
+.display-block {
+    display: block;
+}
+
+.add-task {
+    margin-top: auto;
+    width: 50%;
+    align-self: center;
+}
