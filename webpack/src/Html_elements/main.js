@@ -8,13 +8,13 @@ export class Main {
     }
 }
 
-export class ProjectsElement {
-    constructor() {
-        this.projects = document.querySelector(".projects");
+export class ParentElement {
+    constructor(parent) {
+        this.parentElement = document.querySelector(parent);
     }
 
     clear() {
-        this.projects.innerHTML = " ";
+        this.parentElement.innerHTML = " ";
     }
 
     createProjectForm() {
@@ -22,7 +22,15 @@ export class ProjectsElement {
         const projectForm = new ProjectForm();
         projectForm.createProjectForm();
         const projectFormElement = projectForm.getProjectForm(); 
-        this.projects.appendChild(projectFormElement);
+        this.parentElement.appendChild(projectFormElement);
+    }
+
+    createTaskForm(projectTitle) {
+        this.clear();
+        const taskForm = new TaskForm();
+        taskForm.createTaskForm(projectTitle);
+        const taskFormElement = taskForm.getTaskForm(); 
+        this.parentElement.appendChild(taskFormElement);
     }
 }
 
@@ -41,25 +49,60 @@ class Form {
         this.addChild(label);
     }
 
-    createInput() {
+    createInput(placeholder, name = "title", type = "text") {
         const input = document.createElement("input");
-        input.setAttribute("type", "text");
-        input.setAttribute("name", "title");
-        input.setAttribute("placeholder", "Write Project Title");
-        input.required = true;
+        input.setAttribute("type", type);
+        input.setAttribute("name", name);
+        input.required = true; 
+        if(type == "text")
+            input.setAttribute("placeholder", placeholder);
         this.addChild(input);
     }
 
-    createSubmitFormButton(value) {
+    createSubmitFormButton(value, innerText) {
         const submit = document.createElement("button");
         submit.setAttribute("type", "submit");
         submit.setAttribute("name", "formType");
         submit.setAttribute("value", value);    
-        submit.innerText = "Add Project!"
+        submit.innerText = innerText;
         submit.classList.add("btn-add");
         this.addChild(submit);
     }
-    getform() {
+
+    createList() {
+        const list = document.createElement("select");
+        list.setAttribute("name", "priority");
+
+        const high = document.createElement("option");
+        high.value = "high";
+        high.text = "High";
+        
+        const low = document.createElement("option");
+        low.value = "low";
+        low.text = "Low";
+
+        low.selected = true;
+
+        list.appendChild(low);
+        list.appendChild(high);
+
+        this.addChild(list);
+    }
+
+    createTextArea() {
+        const textArea = document.createElement("textarea");
+        textArea.setAttribute("name", "description");
+        textArea.setAttribute("rows", 5);
+        textArea.setAttribute("cols", 23);
+        textArea.setAttribute("value", "Your Description goes here");
+        this.addChild(textArea);
+    }
+
+    createDataAttribute(projectTitle) {
+        this.form.setAttribute("data-projectTitle", projectTitle)
+    }
+  
+    getForm() {
         return this.form;
     }
 }
@@ -72,22 +115,51 @@ class ProjectForm {
 
     styleProjectForm() {
         this.style = true;
-        this.projectForm.getform().classList.add("form");
+        this.projectForm.getForm().classList.add("form");
     }
  
     createProjectForm() {
         // Order matters not for logic but for rendering 
         // this.projectForm.createLabel();
-        this.projectForm.createInput();
-        const value = "addProject"
-        this.projectForm.createSubmitFormButton(value);
+        this.projectForm.createInput("Enter Project Title");
+        const value = "addProject";
+        const text = "Add Project!";
+        this.projectForm.createSubmitFormButton(value, text);
     }
 
     getProjectForm() {
         if(!this.style)
             this.styleProjectForm();
-        return this.projectForm.getform();
+        return this.projectForm.getForm();
     }
-    
 }
 
+class TaskForm {
+    constructor() {
+        this.taskForm = new Form();
+        this.style = false;
+    }
+
+    styleTaskForm() {
+        this.style = true;
+        // style task Form
+        this.taskForm.getForm().classList.add("form");
+    }
+
+    createTaskForm(projectTitle) {
+        const value = "addTask";
+        const text = "Add Task!";
+        this.taskForm.createInput("Enter Task Title");
+        this.taskForm.createTextArea();
+        this.taskForm.createInput("date", "date");
+        this.taskForm.createList();
+        this.taskForm.createSubmitFormButton(value, text);
+        this.taskForm.createDataAttribute(projectTitle);
+    }
+
+    getTaskForm() {
+        if(!this.style)
+            this.styleTaskForm();
+        return this.taskForm.getForm();
+    }
+}

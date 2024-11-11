@@ -22,7 +22,15 @@ class ProjectsManager {
     }
 
     removeProject(name) {
-        this.project = this.projects.filter(p => p === name);
+        this.projects = this.projects.filter(p => p === name);
+    }
+
+    addTaskToProject(task, projectTitle) {
+        const project = this.projects.find((element) => element.title == projectTitle);
+        project.tasks.push(task);
+    }
+    getProjectTitles() {
+        return this.projects.map(project => project.title);
     }
 }
 
