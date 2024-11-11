@@ -97,16 +97,16 @@ button {
     background-color: var(--green);
 }
 
-.add-project {
+.margin-left {
     margin-left: auto;
 }
 
 .bg-high-priority {
-
+    background-color: var(--remove);
 }
 
 .bg-normal-priority {
-
+    background-color: var(--green);
 }
 
 .display-none {
@@ -121,4 +121,15 @@ button {
     margin-top: auto;
     width: 50%;
     align-self: center;
+}
+
+.form {
+    width: 250px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-self: center;
+    border: solid 1px black;
+    border-radius: 5px;
+    padding: 5px;
 }
