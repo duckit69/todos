@@ -50,9 +50,11 @@ class Form {
         this.addChild(input);
     }
 
-    createSubmitFormButton() {
+    createSubmitFormButton(value) {
         const submit = document.createElement("button");
         submit.setAttribute("type", "submit");
+        submit.setAttribute("name", "formType");
+        submit.setAttribute("value", value);    
         submit.innerText = "Add Project!"
         submit.classList.add("btn-add");
         this.addChild(submit);
@@ -75,9 +77,10 @@ class ProjectForm {
  
     createProjectForm() {
         // Order matters not for logic but for rendering 
-       // this.projectForm.createLabel();
+        // this.projectForm.createLabel();
         this.projectForm.createInput();
-        this.projectForm.createSubmitFormButton();
+        const value = "addProject"
+        this.projectForm.createSubmitFormButton(value);
     }
 
     getProjectForm() {
@@ -85,7 +88,6 @@ class ProjectForm {
             this.styleProjectForm();
         return this.projectForm.getform();
     }
-   
-
+    
 }
 

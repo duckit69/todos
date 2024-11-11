@@ -1,8 +1,13 @@
 class Project {
     constructor(name) {
-        this.name = name;
+        this.title = name;
+        this.tasks = [];
     }
-    
+
+    addTask(task) {
+        this.tasks.push(task);
+    }
+
 }
 
 class ProjectsManager {
@@ -13,6 +18,7 @@ class ProjectsManager {
     addProject(name) {
         const project = new Project(name);
         this.projects.push(project);
+        localStorage.setItem("projects", JSON.stringify(this.projects));
     }
 
     removeProject(name) {
