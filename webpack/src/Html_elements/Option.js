@@ -8,9 +8,9 @@ export class Option extends HtmlElement {
     }
 
     setSelected() {
-        this.setAttribute("selected", "selected");
+        this.element.setAttribute("selected", "selected");
     }
     removeSelected() {
-        this.removeAttribute("selected");
+        this.element.removeAttribute("selected");
     }
 }   

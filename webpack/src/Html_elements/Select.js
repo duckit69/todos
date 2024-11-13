@@ -1,5 +1,4 @@
 import { HtmlElement } from "./HtmlElement";
-import { Option } from "./Option";
 
 export class Select extends HtmlElement {
     constructor(name) {
@@ -7,8 +6,7 @@ export class Select extends HtmlElement {
         this.setName(name);
     }
 
-    addOption(name, innerText) {
-        const option = new Option(name, innerText);
-        this.appendChild(option);
+    addOption(option) {
+        this.appendChild(option.getElement());
     }
 }

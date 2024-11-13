@@ -3,6 +3,7 @@ import { TextArea } from "./TextArea";
 import { TextInput, DateInput } from "./Input";
 import { SubmitFormButton } from "./Button";
 import { Select } from "./Select";
+import { Option } from "./Option";
 
 class Form extends HtmlElement {
     constructor(classes = []) {
@@ -31,8 +32,15 @@ export class CreateTaskForm extends Form {
         this.taskTitle = new TextInput("title", "Enter Task Name");
         this.description = new TextArea("description", "your task description");
         this.date = new DateInput("date");
+        this.date.setDefaultDate();
         this.priorityList = new Select("priority");
-        this.addTaskButton = new SubmitFormButton("addTask", "Add Task!");
+        const high = new Option("high", "high");
+        const low = new Option("low", "low");
+        low.setSelected();
+        this.priorityList.addOption(high);
+        this.priorityList.addOption(low);
+        
+        this.addTaskButton = new SubmitFormButton("addTask", "Add Task!", ["add-task", "btn-add"]);
         this.setDataAttribute("projectTitle", projectTitle);
         this.appendChild(this.taskTitle.getElement());
         this.appendChild(this.description.getElement());
