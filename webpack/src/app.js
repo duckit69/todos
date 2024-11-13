@@ -1,6 +1,7 @@
 import "./reset.css"
 import "./style.css"
-import { ParentElement } from "./Html_elements/main"
+
+import { ParentElement } from "./Html_elements/ParentElement"
 import { ProjectsManager } from "./pages/project"
 import { Task } from "./pages/task"
 
@@ -31,7 +32,7 @@ if(formType == "addProject") {
     const description = params.get('description');
     const date = params.get('date');
     const projectTitle = params.get('data-projectTitle');
-    const task = new Task(name, description, date, priority);
+    const task = new Task(name, description, date, priority, projectTitle);
     ProjectsManager.addTaskToProject(task, projectTitle);
 }
 

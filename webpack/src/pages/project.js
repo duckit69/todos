@@ -28,6 +28,7 @@ class ProjectsManager {
     addTaskToProject(task, projectTitle) {
         const project = this.projects.find((element) => element.title == projectTitle);
         project.tasks.push(task);
+        localStorage.setItem("tasks", JSON.stringify(this.task));
     }
     getProjectTitles() {
         return this.projects.map(project => project.title);
