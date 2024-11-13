@@ -8,7 +8,9 @@ export class Main {
     }
 
     render() {
-
+        // get projects from local storage
+        // render projects
+        // render tasks 
     }
 }
 

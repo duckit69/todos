@@ -1,6 +1,6 @@
 import { Main } from "../Html_elements/main";
 
-class Home {
+export class Home {
     constructor() {
         
     }
@@ -8,5 +8,7 @@ class Home {
     clear() {
         Main.clear();
     }
-
+    render() {
+        window.location.href = "/";
+    }
 }

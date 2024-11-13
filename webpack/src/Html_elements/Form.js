@@ -10,6 +10,10 @@ class Form extends HtmlElement {
         super("form");
         this.setClass(classes);
     }
+    
+    setAction(action) {
+        this.element.setAttribute("action", action);
+    }
 
     getForm() {
         return this.getElement();
@@ -23,6 +27,8 @@ export class CreateProjectForm extends Form {
         this.addProjectButton = new SubmitFormButton("addProject", "Add Project!", ["button", "btn-add"]);
         this.appendChild(this.projectTitle.getElement());
         this.appendChild(this.addProjectButton.getElement());
+        this.setAction("/project");
+        this.setId("projectForm");
     }
 }
 
@@ -47,5 +53,7 @@ export class CreateTaskForm extends Form {
         this.appendChild(this.date.getElement());
         this.appendChild(this.priorityList.getElement());
         this.appendChild(this.addTaskButton.getElement());
+        this.setAction("/task");
+        this.setId("taskForm");
     }
 }
