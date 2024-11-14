@@ -43,7 +43,13 @@ document.addEventListener("DOMContentLoaded", () => {
     btn.addEventListener("click", () => {
       hideAllAddTaskBtns(addTaskButtons);
       const projectTitle = btn.parentNode.firstElementChild.innerText;
-      const taskElement = new ParentElement(".tasks");
+      let taskElement = null;
+      const tasks = document.querySelectorAll(".tasks");
+      tasks.forEach((element) => {
+        if(element.parentNode.firstElementChild.innerText == projectTitle)
+          element.setAttribute("id", "addTaskTarget");
+      })
+      taskElement = new ParentElement("#addTaskTarget");
       taskElement.createTaskForm(projectTitle);
       taskForm = document.querySelector("#taskForm");
       taskForm.addEventListener("submit", (element) => {
