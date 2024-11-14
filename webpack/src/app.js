@@ -3,6 +3,7 @@ import "./style.css";
 import { ParentElement } from "./Html_elements/ParentElement";
 import { ProjectsManager } from "./script/project";
 import { Home } from "./Html_pages/home";
+import { Task } from "./script/task";
 
 document.addEventListener("DOMContentLoaded", () => {
   const home = new Home();
@@ -34,7 +35,20 @@ document.addEventListener("DOMContentLoaded", () => {
       const projectTitle = btn.parentNode.firstElementChild.innerText;
       const taskElement = new ParentElement(".tasks");
       taskElement.createTaskForm(projectTitle);
-      taskForm = document.querySelector("#taskForms");
+      taskForm = document.querySelector("#taskForm");
+      taskForm.addEventListener("submit", (element) => {
+        console.log("clicked");
+        element.preventDefault();
+        const formData = new FormData(taskForm);
+        const title = formData.get("title");
+        const description = formData.get("description");
+        const date = formData.get("date");
+        const priority = formData.get("priority");
+        const task = new Task(title, description, date, priority, projectTitle);
+        projectsManager.addTaskToProject(task, projectTitle);
+        home.render();
+        window.location.reload();
+      })
     });
   });
 });

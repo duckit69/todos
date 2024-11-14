@@ -6,9 +6,14 @@ class TaskManager {
     constructor() {
         this.taskManager = new Div(["task-manager"]);
         this.editTask = new Button(["btn-edit"]);
+        this.editTask.setInnerText("Edit");
         this.removeTask = new Button(["btn-remove"]);
+        this.removeTask.setInnerText("Remove")
         this.taskManager.appendChild(this.editTask.getElement());
-        this.removeTask.appendChild(this.removeTask.getElement());
+        this.taskManager.appendChild(this.removeTask.getElement());
+    }
+    getElement() {
+        return this.taskManager.getElement();
     }
 }
 

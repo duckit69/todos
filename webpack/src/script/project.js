@@ -19,6 +19,7 @@ class ProjectsManager {
 
     addProject(name) {
         const project = new Project(name);
+        this.projects = this.getProjects();
         this.projects.push(project);
         storage.updateLocalStorage("projects", this.projects);
     }
@@ -29,6 +30,7 @@ class ProjectsManager {
     }
 
     addTaskToProject(task, projectTitle) {
+        this.projects = this.getProjects();
         const project = this.projects.find((element) => element.title == projectTitle);
         project.tasks.push(task);
         storage.updateLocalStorage("projects", this.projects);
@@ -38,7 +40,7 @@ class ProjectsManager {
     }
 
     getProjects() {
-        return storage.returnProjects();
+        return JSON.parse(storage.returnProjects());
     }
 }
 

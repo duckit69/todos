@@ -15,7 +15,7 @@ class ProjectContainer {
 
     displayProjects() {
         // array of projects
-        const projects = JSON.parse(projectManager.getProjects());
+        const projects = projectManager.getProjects();
         // iterate and for each project create projectCard and display its tasks       
         projects.forEach(element => {
             const project = new ProjectCard(element);
