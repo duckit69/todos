@@ -12,8 +12,7 @@
             this.element.setAttribute("id", id);
         }
         setName(name) {
-            if(['input', 'select', 'textarea', 'button'].includes(this.element.tagName.toLowerCase()))
-                this.element.setAttribute("name", name);
+            this.element.setAttribute("name", name);
         }
         setRequired(required = false) {
             if(['input', 'select', 'textarea'].includes(this.element.tagName.toLowerCase()))

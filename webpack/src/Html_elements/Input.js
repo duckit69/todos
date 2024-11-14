@@ -5,7 +5,7 @@ class Input extends HtmlElement {
     constructor(name, classes = []) {
         super("input");
         this.setName(name);
-        this.setClass(...classes);
+        this.setClass(classes);
     }
 
 }

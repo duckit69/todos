@@ -1,4 +1,6 @@
-import { Main } from "../Html_elements/main";
+import { Main } from "../Html_elements/Main";
+
+const main = new Main();
 
 export class Home {
     constructor() {
@@ -6,9 +8,10 @@ export class Home {
     }
 
     clear() {
-        Main.clear();
+        main.clear();
     }
     render() {
-        window.location.href = "/";
+        this.clear();
+        main.render();
     }
 }

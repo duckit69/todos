@@ -8,7 +8,7 @@ class Button extends HtmlElement {
 
 }
 
-export class SubmitFormButton extends Button {
+class SubmitFormButton extends Button {
     constructor(value, innerText, classes = []) {
         super(classes);
         this.setType("submit");
@@ -16,3 +16,5 @@ export class SubmitFormButton extends Button {
         this.setInnerText(innerText);
     }
 }
+
+export {Button, SubmitFormButton}

@@ -38,11 +38,7 @@ class ProjectsManager {
     }
 
     getProjects() {
-        const storedProjects = JSON.parse(localStorage.getItem("projects"));
-        if(!storedProjects)
-            return [];
-        else
-            return storedProjects;
+        return storage.returnProjects();
     }
 }
 
