@@ -18,6 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let taskForm = null;
   addProjectButton.addEventListener("click", () => {
     const projectElement = new ParentElement(".projects");
+    const removeProject = document.querySelector(".btn-remove");
+    removeProject.classList.add("display-none");
+    addProjectButton.classList.add("display-none");
     projectElement.createProjectForm();
     addProjectForm = document.querySelector("#projectForm");
     addProjectForm.addEventListener("submit", (element) => {
