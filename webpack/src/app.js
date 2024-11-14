@@ -5,6 +5,12 @@ import { ProjectsManager } from "./script/project";
 import { Home } from "./Html_pages/home";
 import { Task } from "./script/task";
 
+function hideAllAddTaskBtns(addTaskButtons) {
+  addTaskButtons.forEach((btn) => {
+    btn.classList.add("display-none");
+  }) 
+}
+
 document.addEventListener("DOMContentLoaded", () => {
   const home = new Home();
 
@@ -35,6 +41,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   addTaskButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
+      hideAllAddTaskBtns(addTaskButtons);
       const projectTitle = btn.parentNode.firstElementChild.innerText;
       const taskElement = new ParentElement(".tasks");
       taskElement.createTaskForm(projectTitle);
@@ -55,3 +62,5 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+
