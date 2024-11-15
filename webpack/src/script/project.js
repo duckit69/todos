@@ -59,6 +59,14 @@ class ProjectsManager {
         })
         storage.updateLocalStorage("projects", this.projects);
     }
+    removeTaskFromProject(projectTitle, taskTitle) {
+        this.projects = this.getProjects();
+        this.projects.forEach((project) => {
+            if(project.title == projectTitle) 
+                project.tasks = project.tasks.filter((task) => task.title !== taskTitle);
+        });
+        storage.updateLocalStorage("projects", this.projects);
+    }
 }
 
 export { ProjectsManager };

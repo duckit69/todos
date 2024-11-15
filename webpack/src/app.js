@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const addTaskButtons = document.querySelectorAll(".add-task");
   const editTaskButtons = document.querySelectorAll(".btn-edit");
   const removeProject = document.querySelector("#removeProject");
+  const removeTaskButtons = document.querySelectorAll(".removeTask")
 
   const projectsManager = new ProjectsManager();
 
@@ -113,7 +114,18 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
-
+  // handles remove task
+  removeTaskButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      const currTask = btn.parentElement.parentElement;
+      currTask.setAttribute("id", "editTaskForm");
+      const taskTitle = currTask.firstElementChild.innerText;
+      const projectTitle = currTask.parentElement.parentElement.firstElementChild.innerText;
+      projectsManager.removeTaskFromProject(projectTitle, taskTitle);
+      home.render();
+      window.location.reload();
+    })
+  })
 });
 
 
