@@ -1,7 +1,7 @@
 import { HtmlElement } from "./HtmlElement";
 
 export class TextArea extends HtmlElement {
-    constructor(name, placeholder) {
+    constructor(name, placeholder = "") {
         super("textarea");
         this.setName(name);
         this.setPlaceHolder(placeholder);
@@ -15,5 +15,9 @@ export class TextArea extends HtmlElement {
         this.setAttribute("rows", rows);
     }
 
+    setValue(value) {
+        console.log(this);
+        this.element.value = value;
+    }
     
 }

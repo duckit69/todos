@@ -57,3 +57,31 @@ export class CreateTaskForm extends Form {
         this.setId("taskForm");
     }
 }
+
+export class EditTaskForm extends Form {
+    constructor(task, classes = []) {
+        super(classes);
+        this.taskTitle = new TextInput("title", task.title);
+        this.taskTitle.setValue(task.title);
+        this.description = new TextArea("description");
+        this.description.setValue(task.description);
+        this.date = new DateInput("date");
+        this.date.setValue(task.date);
+        // this.priorityList = new Select("priority");
+        // const high = new Option("high", "high");
+        // const low = new Option("low", "low");
+        // low.setSelected();
+        // this.priorityList.addOption(high);
+        // this.priorityList.addOption(low);
+        
+        this.editTaskButton = new SubmitFormButton("editTask", "Edit Task!", ["add-task", "btn-add"]);
+        this.setDataAttribute("projectTitle", task.projectTitle);
+        this.appendChild(this.taskTitle.getElement());
+        this.appendChild(this.description.getElement());
+        this.appendChild(this.date.getElement());
+        // this.appendChild(this.priorityList.getElement());
+        this.appendChild(this.editTaskButton.getElement());
+        this.setAction("/task");
+        this.setId("taskForm");
+    }
+}

@@ -11,7 +11,7 @@ class Input extends HtmlElement {
 }
 
 export class TextInput extends Input {
-    constructor(name, placeholder, classes = []) {
+    constructor(name, placeholder = "", classes = []) {
         super(name, classes);
         this.setType("text");
         this.setPlaceHolder(placeholder);
@@ -29,4 +29,8 @@ export class DateInput extends Input {
         const formatted_date = format(curr_date, "yyyy-MM-dd");
         this.element.value = formatted_date;
     }
+
+    setValue(value) {
+        this.element.value = value;
+    } 
 }

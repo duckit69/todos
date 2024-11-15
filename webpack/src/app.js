@@ -5,10 +5,23 @@ import { ProjectsManager } from "./script/project";
 import { Home } from "./Html_pages/home";
 import { Task } from "./script/task";
 
-function hideAllAddTaskBtns(addTaskButtons) {
+function hideAllAddTaskBtns() {
+  const addTaskButtons = document.querySelectorAll(".add-task");
   addTaskButtons.forEach((btn) => {
     btn.classList.add("display-none");
-  }) 
+  });
+}
+
+function addTask(taskForm, home, projectsManager, projectTitle) {
+  const formData = new FormData(taskForm);
+  const title = formData.get("title");
+  const description = formData.get("description");
+  const date = formData.get("date");
+  const priority = formData.get("priority");
+  const task = new Task(title, description, date, priority, projectTitle);
+  projectsManager.addTaskToProject(task, projectTitle);
+  home.render();
+  window.location.reload();
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -17,11 +30,13 @@ document.addEventListener("DOMContentLoaded", () => {
   home.render();
   const addProjectButton = document.querySelector("#add-project");
   const addTaskButtons = document.querySelectorAll(".add-task");
+  const editTaskButtons = document.querySelectorAll(".btn-edit");
 
   const projectsManager = new ProjectsManager();
 
   let addProjectForm = null;
   let taskForm = null;
+  // handles add project
   addProjectButton.addEventListener("click", () => {
     const projectElement = new ParentElement(".projects");
     const removeProject = document.querySelector(".btn-remove");
@@ -39,6 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  //handles add task
   addTaskButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       hideAllAddTaskBtns(addTaskButtons);
@@ -46,25 +62,37 @@ document.addEventListener("DOMContentLoaded", () => {
       let taskElement = null;
       const tasks = document.querySelectorAll(".tasks");
       tasks.forEach((element) => {
-        if(element.parentNode.firstElementChild.innerText == projectTitle)
+        if (element.parentNode.firstElementChild.innerText == projectTitle)
           element.setAttribute("id", "addTaskTarget");
-      })
+      });
       taskElement = new ParentElement("#addTaskTarget");
       taskElement.createTaskForm(projectTitle);
       taskForm = document.querySelector("#taskForm");
       taskForm.addEventListener("submit", (element) => {
-        console.log("clicked");
         element.preventDefault();
-        const formData = new FormData(taskForm);
-        const title = formData.get("title");
-        const description = formData.get("description");
-        const date = formData.get("date");
-        const priority = formData.get("priority");
-        const task = new Task(title, description, date, priority, projectTitle);
-        projectsManager.addTaskToProject(task, projectTitle);
-        home.render();
-        window.location.reload();
-      })
+        addTask(taskForm, home, projectsManager, projectTitle);
+      });
+    });
+  });
+  // handles edit task
+  editTaskButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const currTask = btn.parentElement.parentElement;
+      currTask.setAttribute("id", "editTaskForm");
+      const title = currTask.firstElementChild.innerText;
+      // get task by title
+      const tmp_task = new Task();
+      const task = tmp_task.getTaskByTitle(title);
+      // create edit form and fill it with task infos
+      const taskElement = new ParentElement("#editTaskForm");
+      taskElement.editTaskForm(task);
+      const editForm = document.querySelector("#taskForm");
+      editForm.addEventListener("submit", (form) => {
+        form.preventDefault();
+        // remove curr task so we dont have duplicate
+        tmp_task.removeTask(task.title);
+        addTask(editForm, home, projectsManager, task.projectTitle);
+      });
     });
   });
 });

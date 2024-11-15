@@ -67,9 +67,9 @@ class TaskContainer{
 class TaskCard {
     constructor(title, description, date) {
         this.taskCard = new Div(["task"]);
-        this.title = new H3(title, "task-title");
-        this.description = new P(description, "task-desc");
-        this.date = new P(date, "task-date");
+        this.title = new H3(title, ["task-title"]);
+        this.description = new P(description, ["task-desc"]);
+        this.date = new P(date, ["task-date"]);
         this.taskManager = new TaskManager(); 
     }
 
