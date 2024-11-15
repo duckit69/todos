@@ -11,6 +11,7 @@ class Head {
         this.addProject.setInnerText("Add Project");
         this.removeProject = new Button(["btn-remove"]);
         this.removeProject.setInnerText("Remove Project");
+        this.removeProject.setId("removeProject");
         this.head.appendChild(this.title.getElement());
         this.head.appendChild(this.addProject.getElement());
         this.head.appendChild(this.removeProject.getElement());

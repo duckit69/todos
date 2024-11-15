@@ -4,6 +4,7 @@ import { TextInput, DateInput } from "./Input";
 import { SubmitFormButton } from "./Button";
 import { Select } from "./Select";
 import { Option } from "./Option";
+import { ProjectsManager } from "../script/project";
 
 class Form extends HtmlElement {
     constructor(classes = []) {
@@ -83,5 +84,23 @@ export class EditTaskForm extends Form {
         this.appendChild(this.editTaskButton.getElement());
         this.setAction("/task");
         this.setId("taskForm");
+    }
+}
+
+export class RemoveProjectForm extends Form{
+    constructor(classes = []) {
+        super(classes);
+        this.projectList = new Select("projectTitle");
+        const projects = new ProjectsManager();
+        this.projects = projects.getProjects();
+        this.projects.forEach((element, index) => {
+            const project = new Option(element.title, element.title);
+            if(index == 0)
+                project.setSelected();
+            this.projectList.addOption(project);
+        });
+        this.removeProject = new SubmitFormButton("removeProject", "Remove Project!",["btn-remove"]);
+        this.appendChild(this.projectList.getElement());
+        this.appendChild(this.removeProject.getElement());
     }
 }

@@ -31,11 +31,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const addProjectButton = document.querySelector("#add-project");
   const addTaskButtons = document.querySelectorAll(".add-task");
   const editTaskButtons = document.querySelectorAll(".btn-edit");
+  const removeProject = document.querySelector("#removeProject");
 
   const projectsManager = new ProjectsManager();
 
   let addProjectForm = null;
   let taskForm = null;
+  let removeProjectForm = null;
+
   // handles add project
   addProjectButton.addEventListener("click", () => {
     const projectElement = new ParentElement(".projects");
@@ -53,7 +56,22 @@ document.addEventListener("DOMContentLoaded", () => {
       window.location.reload();
     });
   });
-
+  // handles Remove Project
+  removeProject.addEventListener("click", () => {
+    const projectElement = new ParentElement(".projects");
+    projectElement.displayProjectsForm();
+    addProjectButton.classList.add("display-none");
+    removeProject.classList.add("display-none");
+    removeProjectForm = document.querySelector(".form");
+    removeProjectForm.addEventListener("submit", (element) => {
+      element.preventDefault();
+      const formData = new FormData(removeProjectForm);
+      const projectTitle = formData.get("projectTitle");
+      projectsManager.removeProject(projectTitle);
+      home.render();
+      window.location.reload();
+    });
+  })
   //handles add task
   addTaskButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
@@ -90,11 +108,12 @@ document.addEventListener("DOMContentLoaded", () => {
       editForm.addEventListener("submit", (form) => {
         form.preventDefault();
         // remove curr task so we dont have duplicate
-        tmp_task.removeTask(task.title);
+        tmp_task.updateTask(task.title);
         addTask(editForm, home, projectsManager, task.projectTitle);
       });
     });
   });
+
 });
 
 

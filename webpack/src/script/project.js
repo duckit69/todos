@@ -42,6 +42,23 @@ class ProjectsManager {
     getProjects() {
         return JSON.parse(storage.returnProjects());
     }
+    removeProject(projectTitle) {
+        this.projects = this.getProjects();
+        // remove all tasks 
+        this.removeTasksFromProject(projectTitle);
+        // remove project
+        this.projects = this.projects.filter(p => p.title !== projectTitle);
+        //update storage
+        storage.updateLocalStorage("projects", this.projects);
+    }
+    removeTasksFromProject(projectTitle){
+        this.projects = this.getProjects();
+        this.projects.forEach((element) => {
+            if(element.title == projectTitle) 
+                element.tasks = [];
+        })
+        storage.updateLocalStorage("projects", this.projects);
+    }
 }
 
 export { ProjectsManager };

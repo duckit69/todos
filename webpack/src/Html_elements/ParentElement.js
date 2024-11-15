@@ -1,4 +1,4 @@
-import { CreateProjectForm, CreateTaskForm, EditTaskForm } from "./Form";
+import { CreateProjectForm, CreateTaskForm, EditTaskForm, RemoveProjectForm } from "./Form";
 export class ParentElement {
     constructor(parent) {
         this.parentElement = document.querySelector(parent);
@@ -23,6 +23,11 @@ export class ParentElement {
         this.clear();
         const editForm = new EditTaskForm(task, ["form"]);
         this.parentElement.appendChild(editForm.getForm());
+    }
+    displayProjectsForm() {
+        this.clear();
+        const projectList = new RemoveProjectForm(["form"]);
+        this.parentElement.appendChild(projectList.getForm());
     }
 }
 

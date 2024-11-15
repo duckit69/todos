@@ -22,20 +22,21 @@ class Task {
         return tmp;
     }
 
-    removeTask(title) {
+    updateTask(title) {
         const localStorage = new LocalStorage();
         const projects = JSON.parse(localStorage.returnProjects());
         projects.forEach(project => {
             project.tasks.forEach( (task, index) => {
                 if(task.title == title) {
-                    //remove from array
                     project.tasks.splice(index, 1);
                 }
             })
         });
         localStorage.updateLocalStorage("projects", projects);
     }
+    removeTask(tasks) {
+        tasks.filter(t => t.title !== this.title);
+    }
 }
-
 
 export { Task };
